@@ -18,5 +18,6 @@
 - Category'ler listelenir.
 - Eğer bir "approve" status'üne sahip bir category varsa, ve bu category için bir auction yoksa, veya auctionlar var ise ve hepsi "finish" status'üne sahip ise aşağıdaki basamaklardan devam et
 - Photo'lar listelenir.
-- Eğer bir category içerisinde en az 1 tane status'ü "approve" olan bir photo var ise, o category için 1 tane auction eklenir. category_id setlenir. start_time ve finish_time cronun zaman aralığına göre setlenir. status "upload" olarak setlenir.
+- Eğer bir category içerisinde en az 1 tane status'ü "approve" olan bir photo var ise, aşağıdaki basamak ile devam et
+- Category için 1 tane auction eklenir. category_id setlenir. start_time ve finish_time cronun zaman aralığına göre setlenir. status "vote" olarak setlenir.
 - cron tablosundaki last_triggered_time setlenir.
