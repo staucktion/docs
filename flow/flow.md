@@ -12,6 +12,13 @@
 
 <hr/>
 
+## Fotoğraf Yüklendikten Sonra
+
+- Yüklenen fotoğraf 'wait' satatusunde kayıt edilir.
+- Yüklenen fotoğraf 'is_auctionable' false olarak kayıt edilir.
+- Validator fotoğrafı 'approve' statuse çektikten sonra, kullanıcı artık fotoğrafı 'is_auctinable' true yapabilir.
+- 'is_auctionable' true olan bir fotoğraf bir sonraki auction'a otomatik olarak kayıt edilir.
+
 ## Auction Oluşturulması
 
 - Cron tetiklenir.
