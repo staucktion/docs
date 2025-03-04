@@ -4,10 +4,9 @@
 
 - Timer cron ile çalışıp belirli bir zaman aralığında tetiklenir.
 - Eğer cron 10 saate ayarlanmış ise, auction stateleri şekilde devam eder:
-  `0-10:` upload
-  `10-20:` vote
-  `20-30:` auction
-  `30-40:` finish
+  `0-10:` vote
+  `10-20:` auction
+  `20-30:` finish
 - Bu şekilde döngü tekrar eder.
 
 <hr/>
