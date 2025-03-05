@@ -30,12 +30,11 @@
 - photo auction id'si setlenir.
 - category'nin içerisindeki photo 'approved' statusten 'vote' statuse geçer.
 
-## Auction'ın status'ü 'vote' iken 'auction' kısmına geçmesi
+## Auction status'ü 'vote' iken 'auction' durumuna geçmesi
 
 - Cron tetiklenir
 - Eğer bir category'e ait auction 'vote' statusünde ise, sonraki basamak ile devam et.
 - Her auction'ı gez ve 'vote' statusune sahip olan auction statusu 'auction' yap.
 - Bu auction'a ait olan photolar eğer ilk %10 luk dilimde ise status'ü 'auction' olarak değişir.
 - Bu auction'a ait olan photolar eğer ilk %10 luk dilimde değil ise status'ü 'purchasable' olarak değişir.
-
-- Status'u auction photolar için photo_auction table'ına yeni bir row eklenir. bu tabloda auction id ve photo id tutulur.
+- Status'u auction photolar için photo_auction table'ına bu photo için alan eklenir. Status 'auction' olarak setlenir.
