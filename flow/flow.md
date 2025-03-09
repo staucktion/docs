@@ -41,9 +41,24 @@
 - Bu auction'a ait olan photolar eğer ilk %10 luk dilimde değil ise status'ü 'purchasable' olarak değişir.
 - Status'u auction photolar için photo_auction table'ına bu photo için alan eklenir. Status 'auction' olarak setlenir.
 
+## Auction status'ü 'auction' iken 'finsih' veya 'wait_purchase_after_auction' durumuna geçmesi
+
+- Cron tetiklenir
+- Eğer bir category'e ait auction 'auction' statusünde ise, sonraki basamak ile devam et.
+- Her auction'ı gez.
+- Her auction'ın auction_photo ları gez.
+- Auction_photo status 'auction' ise,
+- Bidleri listele
+- Eğer bid yok ise auction_photo status'ü 'finish' yap, bu auction_photo içerisindeki photo'nun status'u de 'finish' yap, auction status u de 'finish' yap.
+- Eğer bid var ise auction_photo status'ü 'wait_purchase_after_auction' yap, bu auction_photo içerisindeki photo'nun status'u de 'wait_purchase_after_auction' yap, auction status u de 'wait_purchase_after_auction' yap.
+- Auction_photo tablosunda 'current_winner_order' 1 olarak setle.
+- Auction_photo tablosunda 'winner_user_id_1', 'winner_user_id_2' ve 'winner_user_id_3' ü eğer uygunsa setle (Sadece 1 kişi bid vermiş olabilir bu durumda sadece 1 setlenir).
+- Auction içerisindeki 'purchasable' photoları filtrele status 'finish' olarak setle.
+
 <hr/>
 
 ## Provision
+
 - Kullanıcı banka credential'ları ile birlikte istek yapar.
 - .env'de belirtilen kadar provision yapılır.
 - Provision yapmak için bank-api isteği gönderilir.
@@ -53,10 +68,10 @@
 <hr/>
 
 ## Bid Cycle
+
 - Kullanıcı auction_photo kısmındaki bir fotoğrafa bid yapmak için istek atar.
 - Eğer kullanıcının status'ü 'active' değil ise reddedilir ve provision yapması için mesaj döner.
 - İstek atılan photo auction_photo table'ında sorgulanır. Eğer varsa ve status 'auction' ise sonraki basamak ile devam et.
 - İstek atılan photo eğerki kendi photo'su ise reddedilir.
 - Kullanıcının yaptığı istekteki 'bidAmount' eğer 'auction_photo' tablosundaki 'last_bid_amount' değerine eşit veya daha düşükse, istek reddedilir. Bid miktarı yetersiz mesajı döner.
 - 'auction_photo' tablosundaki 'last_bid_amount' değeri güncellenir ve 'bid' tablosuna yeni veri kaydedilir.
-
