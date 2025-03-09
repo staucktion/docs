@@ -57,4 +57,6 @@
 - Eğer kullanıcının status'ü 'active' değil ise reddedilir ve provision yapması için mesaj döner.
 - İstek atılan photo auction_photo table'ında sorgulanır. Eğer varsa ve status 'auction' ise sonraki basamak ile devam et.
 - İstek atılan photo eğerki kendi photo'su ise reddedilir.
+- Kullanıcının yaptığı istekteki 'bidAmount' eğer 'auction_photo' tablosundaki 'last_bid_amount' değerine eşit veya daha düşükse, istek reddedilir. Bid miktarı yetersiz mesajı döner.
+- 'auction_photo' tablosundaki 'last_bid_amount' değeri güncellenir ve 'bid' tablosuna yeni veri kaydedilir.
 
