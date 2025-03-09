@@ -50,3 +50,11 @@
 - Provision bakiye yetersizliği sebebiyle yapılamazsa kullanıcının status'ü 'banned' olarak değiştirilir.
 - Porvision yapılabilirse, provision kaldırılır ve kullanıcının status'ü 'active' olarak değiştirilir.
 
+<hr/>
+
+## Bid Cycle
+- Kullanıcı auction_photo kısmındaki bir fotoğrafa bid yapmak için istek atar.
+- Eğer kullanıcının status'ü 'active' değil ise reddedilir ve provision yapması için mesaj döner.
+- İstek atılan photo auction_photo table'ında sorgulanır. Eğer varsa ve status 'auction' ise sonraki basamak ile devam et.
+- İstek atılan photo eğerki kendi photo'su ise reddedilir.
+
