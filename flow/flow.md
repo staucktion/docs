@@ -18,6 +18,8 @@
 - Validator fotoğrafı 'approve' statuse çektikten sonra, kullanıcı artık fotoğrafı 'is_auctionable' true yapabilir.
 - 'is_auctionable' true olan bir fotoğraf bir sonraki auction'a otomatik olarak kayıt edilir.
 
+<hr/>
+
 ## Auction Oluşturulması
 
 - Cron tetiklenir.
@@ -38,3 +40,13 @@
 - Bu auction'a ait olan photolar eğer ilk %10 luk dilimde ise status'ü 'auction' olarak değişir.
 - Bu auction'a ait olan photolar eğer ilk %10 luk dilimde değil ise status'ü 'purchasable' olarak değişir.
 - Status'u auction photolar için photo_auction table'ına bu photo için alan eklenir. Status 'auction' olarak setlenir.
+
+<hr/>
+
+## Provision
+- Kullanıcı banka credential'ları ile birlikte istek yapar.
+- .env'de belirtilen kadar provision yapılır.
+- Provision yapmak için bank-api isteği gönderilir.
+- Provision bakiye yetersizliği sebebiyle yapılamazsa kullanıcının status'ü 'banned' olarak değiştirilir.
+- Porvision yapılabilirse, provision kaldırılır ve kullanıcının status'ü 'active' olarak değiştirilir.
+
