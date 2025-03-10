@@ -98,7 +98,7 @@
 - Kullanıcı photo id ile istek atar.
 - photo kendisine ait ise istek reddedilir.
 - photo'nun auction'ı getirilir.
-- auction bulunamazsa, veya auction 'vote' statuste değil ise, istek reddedilir.
+- auction bulunamazsa, veya auction 'vote' statuste değil ise, veya photo 'vote' statuste değil ise, istek reddedilir.
 - Kullanıcıya ait olan vote'lar auction id filtresi ile getirilir.
 - Vote sayısı 10 ise istek reddedilir.
 - Kullanıcı bu photo yu daha önce bu photo için vote kullandıysa istek reddedilir.
