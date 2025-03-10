@@ -7,6 +7,7 @@
   `0-10:` vote
   `10-20:` auction
   `20-30:` finish
+  `30-40|60:` wait_purchase_after_auction 
 - Bu şekilde döngü tekrar eder.
 
 <hr/>
@@ -57,18 +58,30 @@
 
 ## Auction 'wait_purchase_after_auction' statusunde iken photo alınması
 
-- Auction'ın status u 'wait_purchase_after_auction' durumuna geçtiği anda 'current_winner_id' li kullanıcı 'last_bid_amount' tutarındaki banka bilgileri ile istek yaparak bu photo'yu satın alabilir.
+- Auction'ın status u 'wait_purchase_after_auction' durumuna geçtiği anda 'current_winner_order' id li kullanıcı 'last_bid_amount' tutarındaki banka bilgileri ile istek yaparak bu photo'yu satın alabilir.
 - Cron'un bir sonraki tetiklenişinde:
 - 'winner_user_id_1' bid yapıp satın almadığı için status 'banned' setlenir.
 - 'winner_user_id_2' var mı diye kontrol edilir.
-- Eğer var ise 'current_winner_id' bir artar (2 oldu) ve artık 'winner_user_id_2' photo yu satın alabilir.
+- Eğer var ise 'current_winner_order' bir artar (2 oldu) ve artık 'winner_user_id_2' photo yu satın alabilir.
 - Eğer yok ise auction, auction_photo photo, photo status u 'finish' durumuna geçer.
 - Cron'un bir sonraki tetiklenişinde:
 - 'winner_user_id_3' var mı diye kontrol edilir.
-- Eğer var ise 'current_winner_id' bir artar (3 oldu) ve artık 'winner_user_id_3' photo yu satın alabilir.
+- Eğer var ise 'current_winner_order' bir artar (3 oldu) ve artık 'winner_user_id_3' photo yu satın alabilir.
 - Eğer yok ise auction, auction_photo photo, photo status u 'finish' durumuna geçer.
 
-## Photo satın alımı
+## Photo satın alımı (auction)
+
+- Kullanıcı photo_id, ve banka bilgileri ile istek atar.
+- photo status 'wait_purchase_after_auction' değil ise istek reddedilir.
+- Kullanıcı eğer auction_photo tablosundaki 'current_winner_order' ile eşleşmiyor ise, istek reddedilir.
+- auction_photo tablosundan 'last_bid_amount' getirilir.
+- Bu miktarın tamamı staucktion banka hesabına aktarılır.
+- purchased_photo tablosunda photo id ve user id setlenir.
+- Bu miktarın %10 luk kısmı bu photo için vote kullanan kullanıcı sayısına bölünür ve vote tablosundaki bu photo_id si bu olan vote'ların 'transfer_amount' kısımlarına setlenir. Bu voteların status u 'wait' olarak setlenir.
+- Bu miktarın %80 lik kısmı photo'yu yükleyen kullanıcının banka hesabına aktarılabilmesi için photographer_payment tablosunda 'payment_amount' alanına setlenir.
+- 'user_id' alanı photoyu yükleyen kullanıcının id'si ile setlenir. status 'wait' olarak setlenir.
+- auction_photo, ve auction tablolarındaki status ler 'finish' olarak setlenir
+- photo status 'sold' olarak setlenir.
 
 <hr/>
 
