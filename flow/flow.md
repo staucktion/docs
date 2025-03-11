@@ -12,10 +12,10 @@
 
 <hr/>
 
-## Fotoğraf Yüklendikten Sonra
+## Fotoğraf Yükleme
 
 - Yüklenen fotoğraf 'wait' satatusunde kayıt edilir.
-- Yüklenen fotoğraf 'is_auctionable' false olarak kayıt edilir.
+- Yüklenen fotoğraf 'is_auctionable' alanı false olarak kayıt edilir.
 - Validator fotoğrafı 'approve' statuse çektikten sonra, kullanıcı artık fotoğrafı 'is_auctionable' true yapabilir.
 - 'is_auctionable' true olan bir fotoğraf bir sonraki auction'a otomatik olarak kayıt edilir.
 
@@ -24,11 +24,12 @@
 ## Auction Oluşturulması
 
 - Cron tetiklenir.
-- Category'ler listelenir.
-- Eğer bir "approve" status'üne sahip bir category varsa, ve bu category için bir auction yoksa, veya auctionlar var ise ve hepsi "finish" status'üne sahip ise, sonraki basamak ile devam et.
+- Category'ler listelenir ve gezilir.
+- Eğer bir "approve" status'üne sahip ise category, sonraki basamak ile devam et.
+- Eğer bu category için bir auction yoksa, veya (auctionlar var ise ve hepsi "finish" status'üne sahip ise), sonraki basamak ile devam et.
 - Photo'lar listelenir.
-- Eğer bir category içerisinde en az 1 tane 'is_auctionable' true olan bir photo var ise, ve en az 1 tane status 'approve' olan bir photo var ise sonraki basamak ile devam et.
-- Category için 1 tane auction eklenir. category_id setlenir. start_time ve finish_time cronun zaman aralığına göre setlenir. status "vote" olarak setlenir.
+- Eğer bu category içerisinde en az 1 tane 'is_auctionable' true ve status 'approve' olan bir photo var ise sonraki basamak ile devam et.
+- Bu category için bir tane auction eklenir. category_id setlenir. start_time ve finish_time cronun zaman aralığına göre setlenir. status "vote" olarak setlenir.
 - cron tablosundaki last_triggered_time setlenir.
 - photo auction id'si setlenir.
 - category'nin içerisindeki photo 'approved' statusten 'vote' statuse geçer.
