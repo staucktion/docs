@@ -115,16 +115,16 @@
 - auction bulunamazsa, veya auction 'vote' statuste değil ise, veya photo 'vote' statuste değil ise, istek reddedilir.
 - Kullanıcıya ait olan vote'lar auction id filtresi ile getirilir.
 - Vote sayısı 10 ise istek reddedilir.
-- Kullanıcı bu photo yu daha önce bu photo için vote kullandıysa istek reddedilir.
+- Kullanıcı daha önce bu photo için vote kullandıysa istek reddedilir.
 - photo'da bulunan 'vote_count' bir artar.
-- Vote tablosuna user id , photo id setlenir. 'transfer_amount' null olarak setlenir. status 'vote' olarak setlenir.
+- vote tablosuna user_id, photo_id setlenir. 'transfer_amount' null olarak setlenir. status 'vote' olarak setlenir.
 
 <hr/>
 
 ## WithdrawProfit
 
 - Kullanıcı banka bilgileri ile istek atar.
-- 'wait' status'üne sahip olan bütün vote'lar getirilir ve user id ile filtelenir.
+- 'wait' status'üne sahip olan bütün vote'lar getirilir ve user id ile filtrelenir.
 - 'wait' statüs'üne sahip olan bütün photographer_payment lar getirilir ve user id ile filtrelenir.
 - 'wait' status'üne sahip olan votelar 'finish' statusu ile setlenir.
 - 'wait' status'üne sahip olan photographer_payment 'finish' statusu ile setlenir.
