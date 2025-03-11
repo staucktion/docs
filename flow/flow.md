@@ -7,7 +7,7 @@
   `0-10:` vote
   `10-20:` auction
   `20-30:` finish
-  `30-40|60:` wait_purchase_after_auction 
+  `30-40|60:` wait_purchase_after_auction
 - Bu şekilde döngü tekrar eder.
 
 <hr/>
@@ -117,3 +117,15 @@
 - Kullanıcı bu photo yu daha önce bu photo için vote kullandıysa istek reddedilir.
 - photo'da bulunan 'vote_count' bir artar.
 - Vote tablosuna user id , photo id setlenir. 'transfer_amount' null olarak setlenir. status 'vote' olarak setlenir.
+
+<hr/>
+
+## WithdrawProfit
+
+- Kullanıcı banka bilgileri ile istek atar.
+- 'wait' status'üne sahip olan bütün vote'lar getirilir ve user id ile filtelenir.
+- 'wait' statüs'üne sahip olan bütün photographer_payment lar getirilir ve user id ile filtrelenir.
+- 'wait' status'üne sahip olan votelar 'finish' statusu ile setlenir.
+- 'wait' status'üne sahip olan photographer_payment 'finish' statusu ile setlenir.
+- Toplam kar hesaplanır.
+- user'ın sağlamış olduğu banka bilgileri ile staucktion hesabından para transferi gerçekleştirilir.
