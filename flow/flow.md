@@ -92,7 +92,7 @@
 - .env'de belirtilen kadar provision yapılır.
 - Provision yapmak için bank-api isteği gönderilir.
 - Provision bakiye yetersizliği sebebiyle yapılamazsa kullanıcının status'ü 'banned' olarak değiştirilir.
-- Porvision yapılabilirse, provision kaldırılır ve kullanıcının status'ü 'active' olarak değiştirilir.
+- Provision yapılabilirse, provision kaldırılır ve kullanıcının status'ü 'active' olarak değiştirilir.
 
 <hr/>
 
